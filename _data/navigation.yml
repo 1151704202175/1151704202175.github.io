@@ -1,22 +1,19 @@
-# main links links
 main:
-  - title: "About Me"
-    url: "/#about-me"
-
-  - title: "News"
-    url: "/#-news"
-
-  - title: "Publications"
-    url: "/#-publications"
-
-  - title: "Honors and Awards"
-    url: "/#-honors-and-awards"
-
-  - title: "Educations"
-    url: "/#-educations"
-
-  - title: "Invited Talks"
-    url: "/#-invited-talks"
-
-  - title: "Internships"
-    url: "/#-internships"
+  - title: "การศึกษา"
+    url: "/#1-การศึกษา-education"
+  - title: "ตำแหน่งงาน"
+    url: "/#2-ตำแหน่งงาน-position--experience"
+  - title: "งานวิจัย"
+    url: "/#3-งานวิจัย--publication"
+  - title: "หนังสือ/บทความ"
+    url: "/#4-หนังสือ--บทความ-books--articles"
+  - title: "Certification"
+    url: "/#5-certification-ประกาศนียบัตรวิชาชีพสากล"
+  - title: "วิชาที่สอน"
+    url: "/#6-วิชาที่สอน-teaching--courses"
+  - title: "GitHub / Projects"
+    url: "/#7-github--projects"
+  - title: "Cybersecurity / CTF"
+    url: "/#8-cybersecurity--ctf-or-domain-activities"
+  - title: "Conference / กิจกรรม"
+    url: "/#9-conference--กิจกรรม-conference--activities"
