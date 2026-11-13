@@ -1,0 +1,1645 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>พอร์ตโฟลิโอตัวอย่าง — นักออกแบบผลิตภัณฑ์ดิจิทัลและ UX/UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --bg-alt: #f3efe9;
+      --surface: #ffffff;
+      --border: #e6e0d6;
+      --border-strong: #d4cbbd;
+      --ink: #1c1917;
+      --ink-secondary: #44403c;
+      --muted: #78716c;
+      --brand: #b85038;
+      --brand-hover: #9e402a;
+      --brand-soft: #fbeee9;
+      --brand-ink: #ffffff;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --radius-sm: 8px;
+      --radius: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.05);
+      --shadow: 0 8px 24px rgba(28, 25, 23, 0.06), 0 2px 6px rgba(28, 25, 23, 0.04);
+      --shadow-lg: 0 20px 44px rgba(28, 25, 23, 0.14);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --font-sans: 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Sample Notice Bar */
+    .sample-banner {
+      background: var(--ink);
+      color: #f5f5f4;
+      font-size: 13px;
+      padding: 8px var(--space-4);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .sample-pill {
+      background: var(--brand);
+      color: var(--brand-ink);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    /* Header & Nav */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 248, 245, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: var(--space-4);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--ink);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      color: var(--ink);
+      background: var(--bg-alt);
+    }
+
+    .nav-btn:focus-visible,
+    .btn:focus-visible,
+    .filter-tab:focus-visible,
+    .project-card:focus-visible,
+    .form-control:focus-visible,
+    .close-modal-btn:focus-visible,
+    .mobile-menu-btn:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    .mobile-menu-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .mobile-nav-drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: var(--space-3) var(--space-6);
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .mobile-nav-drawer.open {
+      display: flex;
+    }
+
+    .mobile-nav-drawer .nav-btn {
+      text-align: left;
+      width: 100%;
+      padding: 10px 12px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font: inherit;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: var(--brand-ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-hover);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-alt);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: var(--space-12) 0 var(--space-16);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.25fr 0.95fr;
+        gap: var(--space-12);
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand);
+      background: var(--brand-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4.5vw, 48px);
+      line-height: 1.2;
+      font-weight: 700;
+      margin: 0 0 var(--space-4);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title .serif-accent {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brand);
+      font-size: 1.12em;
+    }
+
+    .hero-bio {
+      font-size: 17px;
+      color: var(--ink-secondary);
+      margin: 0 0 var(--space-8);
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    /* Profile Placeholder Card */
+    .profile-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .profile-portrait {
+      width: 100%;
+      aspect-ratio: 4 / 4.2;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #f3ebe2 0%, #e7d8c9 100%);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .placeholder-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(28, 25, 23, 0.72);
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .profile-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #16a34a;
+    }
+
+    /* Section Generic */
+    section {
+      padding: var(--space-16) 0;
+    }
+
+    .section-alt {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+
+    @media (min-width: 768px) {
+      .section-header.row {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 4px 0 0;
+      max-width: 560px;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--ink-secondary);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+    }
+
+    .filter-tab.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #ffffff;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-align: left;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--border-strong);
+    }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-body {
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      margin-bottom: var(--space-2);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    .project-year {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .project-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0 0 var(--space-2);
+      color: var(--ink);
+    }
+
+    .project-summary {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0 0 var(--space-4);
+      flex: 1;
+    }
+
+    .project-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-card:hover .project-cta {
+      color: var(--brand);
+    }
+
+    /* About & Skills */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr 1.1fr;
+        gap: var(--space-12);
+      }
+    }
+
+    .card-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sub-heading {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 var(--space-4);
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+
+    .chip-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-chip {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--ink-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .skill-chip.tool {
+      background: var(--brand-soft);
+      border-color: #f4d2c7;
+      color: #7c2d12;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid var(--border-strong);
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand);
+      border: 2px solid var(--surface);
+    }
+
+    .timeline-period {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand);
+      margin-bottom: 2px;
+    }
+
+    .timeline-role {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .timeline-org {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 40px;
+      line-height: 1;
+      color: var(--brand);
+      margin-bottom: var(--space-2);
+    }
+
+    .quote-text {
+      font-size: 15px;
+      color: var(--ink-secondary);
+      margin: 0;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      border-top: 1px solid var(--border);
+      padding-top: var(--space-4);
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .author-role {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Contact & Hire Me Form */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: var(--space-12);
+      }
+    }
+
+    .social-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14px;
+    }
+
+    .social-label {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .social-handle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .form-group {
+      margin-bottom: var(--space-4);
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .required-star {
+      color: var(--brand);
+    }
+
+    .form-control {
+      width: 100%;
+      font: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .form-control:focus {
+      background: var(--surface);
+      border-color: var(--brand);
+    }
+
+    .form-control.invalid {
+      border-color: var(--error);
+      background: #fffafa;
+    }
+
+    textarea.form-control {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .field-error {
+      color: var(--error);
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-error.visible {
+      display: block;
+    }
+
+    .form-status {
+      display: none;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+    }
+
+    .form-status.success {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #86efac;
+    }
+
+    /* Saved Submissions Log */
+    .submissions-box {
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border);
+    }
+
+    .submissions-empty {
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: var(--space-4);
+      text-align: center;
+    }
+
+    .submission-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .submission-entry {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+
+    .submission-entry-top {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-2);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .submission-badge {
+      background: var(--brand-soft);
+      color: var(--brand);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    /* Modal Case Study */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(28, 25, 23, 0.62);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-4);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .close-modal-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .close-modal-btn:hover {
+      background: var(--bg-alt);
+    }
+
+    .modal-content {
+      padding: var(--space-6);
+    }
+
+    .case-hero-visual {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: var(--space-6);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    @media (min-width: 680px) {
+      .case-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .case-step {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+    }
+
+    .case-step-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .case-step p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-secondary);
+    }
+
+    .case-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .gallery-mockup {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-secondary);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: var(--space-8) 0;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sample Data Notice -->
+  <div class="sample-banner" role="region" aria-label="แจ้งเตือนข้อมูลตัวอย่าง">
+    <span class="sample-pill">Sample Data</span>
+    <span>หน้าเว็บพอร์ตโฟลิโอตัวอย่าง — ชื่อบุคคล โปรเจกต์ และรีวิวด้านล่างเป็นข้อมูลสมมติเพื่อสาธิตโครงสร้างและการทำงานของเว็บไซต์</span>
+  </div>
+
+  <!-- Sticky Navigation -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <button type="button" class="brand-logo" data-scroll="#hero">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>รินรดา สตูดิโอ <small style="font-weight:400;color:var(--muted);font-size:12px;">(ตัวอย่าง)</small></span>
+      </button>
+
+      <nav class="nav-links" aria-label="เมนูหลัก">
+        <button type="button" class="nav-btn" data-scroll="#projects">ผลงานเด่น</button>
+        <button type="button" class="nav-btn" data-scroll="#about">ประวัติและทักษะ</button>
+        <button type="button" class="nav-btn" data-scroll="#testimonials">เสียงจากผู้ร่วมงาน</button>
+        <button type="button" class="btn btn-primary btn-sm" data-scroll="#contact">ติดต่องาน</button>
+      </nav>
+
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileNavDrawer">
+        เมนู
+      </button>
+    </div>
+
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <button type="button" class="nav-btn" data-scroll="#projects">ผลงานเด่น</button>
+      <button type="button" class="nav-btn" data-scroll="#about">ประวัติและทักษะ</button>
+      <button type="button" class="nav-btn" data-scroll="#testimonials">เสียงจากผู้ร่วมงาน</button>
+      <button type="button" class="nav-btn" data-scroll="#contact">ติดต่องาน (Hire Me)</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">UX/UI &amp; Brand Designer • ข้อมูลตัวอย่าง</div>
+          <h1 class="hero-title">
+            ออกแบบประสบการณ์ดิจิทัลที่ <span class="serif-accent">เรียบง่าย ชัดเจน</span> และแก้ปัญหาให้ผู้ใช้ได้จริง
+          </h1>
+          <p class="hero-bio">
+            สวัสดีค่ะ ฉันชื่อ <strong>รินรดา วัฒนกุล (ชื่อสมมติ)</strong> นักออกแบบผลิตภัณฑ์ดิจิทัลที่ดูแลตั้งแต่การวิจัยผู้ใช้ วางโครงสร้างระบบดีไซน์ ไปจนถึงการสร้างเว็บและแอปพลิเคชันที่พร้อมส่งต่อให้ทีมพัฒนา
+          </p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" data-scroll="#projects">ดูผลงานทั้งหมด</button>
+            <button type="button" class="btn btn-secondary" data-scroll="#contact">ปรึกษาโปรเจกต์</button>
+          </div>
+        </div>
+
+        <div class="profile-frame">
+          <div class="profile-portrait" role="img" aria-label="พื้นที่สำหรับใส่รูปโปรไฟล์ของคุณ">
+            <span class="placeholder-tag">พื้นที่รูปโปรไฟล์ (Placeholder)</span>
+            <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+              <circle cx="80" cy="62" r="28" fill="#D5C3B3" />
+              <path d="M34 138C34 112.595 54.5949 92 80 92C105.405 92 126 112.595 126 138" fill="#C2593F" fill-opacity="0.82"/>
+              <circle cx="80" cy="80" r="72" stroke="#B85038" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="6 6"/>
+            </svg>
+            <span style="font-size:13px;color:var(--ink-secondary);margin-top:8px;font-weight:500;">เปลี่ยนเป็นภาพถ่ายจริงของคุณได้ทันที</span>
+          </div>
+          <div class="profile-caption">
+            <span class="availability">
+              <span class="status-dot" aria-hidden="true"></span>
+              พร้อมรับงานฟรีแลนซ์และที่ปรึกษา
+            </span>
+            <span style="color:var(--muted);">กรุงเทพฯ / Remote</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Featured Projects Section -->
+    <section class="section-alt" id="projects">
+      <div class="container">
+        <div class="section-header row">
+          <div>
+            <h2 class="section-title">ผลงานคัดสรร (Featured Projects)</h2>
+            <p class="section-subtitle">กดเลือกตามหมวดหมู่ หรือคลิกที่การ์ดแต่ละชิ้นเพื่ออ่านเบื้องหลังการทำงาน (Case Study) แบบละเอียด</p>
+          </div>
+          <div class="filter-tabs" role="tablist" aria-label="หมวดหมู่ผลงาน">
+            <button type="button" class="filter-tab active" data-category="all" role="tab" aria-selected="true">ทั้งหมด</button>
+            <button type="button" class="filter-tab" data-category="UX/UI Design" role="tab" aria-selected="false">UX/UI Design</button>
+            <button type="button" class="filter-tab" data-category="Web Design" role="tab" aria-selected="false">Web Design</button>
+            <button type="button" class="filter-tab" data-category="Brand Identity" role="tab" aria-selected="false">Brand Identity</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. About & Skills Section -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">ประวัติ ทักษะ และประสบการณ์ทำงาน</h2>
+          <p class="section-subtitle">สรุปความเชี่ยวชาญหลัก เครื่องมือที่ใช้ประจำ และเส้นทางการทำงาน (ข้อมูลตัวอย่าง)</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card-panel">
+            <h3 class="sub-heading">ความเชี่ยวชาญหลัก (Key Expertise)</h3>
+            <div class="chip-group">
+              <span class="skill-chip">User Research &amp; Usability Testing</span>
+              <span class="skill-chip">Information Architecture</span>
+              <span class="skill-chip">Design Systems</span>
+              <span class="skill-chip">Interactive Prototyping</span>
+              <span class="skill-chip">Responsive Web Design</span>
+              <span class="skill-chip">Visual Brand Direction</span>
+            </div>
+
+            <h3 class="sub-heading">เครื่องมือที่ถนัด (Tools Used)</h3>
+            <div class="chip-group">
+              <span class="skill-chip tool">Figma</span>
+              <span class="skill-chip tool">Framer</span>
+              <span class="skill-chip tool">Adobe Illustrator</span>
+              <span class="skill-chip tool">Photoshop</span>
+              <span class="skill-chip tool">HTML / CSS</span>
+              <span class="skill-chip tool">Notion</span>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <h3 class="sub-heading">ไทม์ไลน์ประสบการณ์ (Experience Timeline)</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-period">2024 – ปัจจุบัน (ตัวอย่าง)</div>
+                <h4 class="timeline-role">Senior Product Designer</h4>
+                <p class="timeline-org">Nava Digital Lab (บริษัทสมมติ)</p>
+                <p class="timeline-desc">ดูแลระบบ Design System กลางสำหรับแอปพลิเคชันการเงินและวางโครงสร้าง UX ร่วมกับทีม Product และ Engineering</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-period">2022 – 2024 (ตัวอย่าง)</div>
+                <h4 class="timeline-role">UX/UI Designer</h4>
+                <p class="timeline-org">Craft &amp; Co. Studio (สตูดิโอสมมติ)</p>
+                <p class="timeline-desc">ออกแบบเว็บไซต์องค์กร อีคอมเมิร์ซ และแพลตฟอร์มจองบริการให้ลูกค้ากลุ่มไลฟ์สไตล์และสุขภาพ</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-period">2020 – 2022 (ตัวอย่าง)</div>
+                <h4 class="timeline-role">Visual &amp; Brand Designer</h4>
+                <p class="timeline-org">Freelance Creative</p>
+                <p class="timeline-desc">สร้างอัตลักษณ์แบรนด์ โลโก้ บรรจุภัณฑ์ และสื่อดิจิทัลให้ธุรกิจขนาดกลางและสตาร์ตอัป</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="section-alt" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">คำชมจากลูกค้าและผู้ร่วมงาน (Testimonials)</h2>
+          <p class="section-subtitle">ตัวอย่างการจัดวางรีวิวเพื่อสร้างความน่าเชื่อถือให้กับพอร์ตโฟลิโอของคุณ</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <div>
+              <div class="quote-mark" aria-hidden="true">“</div>
+              <p class="quote-text">การส่งมอบไฟล์ดีไซน์เป็นระเบียบมาก มีการกำหนด Component และสถานะหน้าจอครบถ้วน ทำให้ทีมนักพัฒนาต่อยอดเป็นโค้ดจริงได้เร็วขึ้นอย่างชัดเจน</p>
+            </div>
+            <div class="quote-author">
+              <div class="author-avatar" aria-hidden="true">กภ</div>
+              <div>
+                <p class="author-name">กิตติภพ วงศ์สวัสดิ์ (ตัวอย่าง)</p>
+                <p class="author-role">Engineering Lead, FinFlow Demo</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div>
+              <div class="quote-mark" aria-hidden="true">“</div>
+              <p class="quote-text">ช่วยตีโจทย์ภาพลักษณ์แบรนด์ของเราออกมาเป็นหน้าเว็บไซต์ที่ดูอบอุ่น เข้าใจง่าย และลูกค้ากดจองคิวผ่านมือถือได้สะดวกกว่าเว็บเดิมมากค่ะ</p>
+            </div>
+            <div class="quote-author">
+              <div class="author-avatar" aria-hidden="true">พช</div>
+              <div>
+                <p class="author-name">พิมพ์ชนก อารีย์ (ตัวอย่าง)</p>
+                <p class="author-role">Founder, Calm Space Clinic Demo</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div>
+              <div class="quote-mark" aria-hidden="true">“</div>
+              <p class="quote-text">ทำงานด้วยง่าย รับฟังข้อจำกัดทางธุรกิจและแปลงออกมาเป็นตัวเลือก UX ที่มีเหตุผลรองรับทุกจุด ช่วยให้ทีมตัดสินใจทิศทางผลิตภัณฑ์ได้มั่นใจขึ้น</p>
+            </div>
+            <div class="quote-author">
+              <div class="author-avatar" aria-hidden="true">ธน</div>
+              <div>
+                <p class="author-name">ธนภัทร ศรีสุวรรณ (ตัวอย่าง)</p>
+                <p class="author-role">Product Manager, Orbit SaaS Demo</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Contact / Hire Me Section -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <h2 class="section-title">ติดต่องาน (Hire Me)</h2>
+            <p class="section-subtitle" style="margin-top:8px;">
+              กำลังมองหานักออกแบบสำหรับเว็บไซต์ แอปพลิเคชัน หรือปรับภาพลักษณ์แบรนด์ สามารถกรอกรายละเอียดในฟอร์มเพื่อพูดคุยเบื้องต้นได้เลยค่ะ
+            </p>
+
+            <div class="social-list" aria-label="ช่องทางโซเชียลมีเดียตัวอย่าง">
+              <div class="social-item">
+                <span class="social-label">อีเมล</span>
+                <span class="social-handle">hello@rinrada-sample.design (ตัวอย่าง)</span>
+              </div>
+              <div class="social-item">
+                <span class="social-label">LinkedIn</span>
+                <span class="social-handle">linkedin.com/in/rinrada-sample (ตัวอย่าง)</span>
+              </div>
+              <div class="social-item">
+                <span class="social-label">Behance / Dribbble</span>
+                <span class="social-handle">@rinrada.studio (ตัวอย่าง)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <h3 class="sub-heading">ส่งข้อความติดต่องาน</h3>
+
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+            <form id="hireForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="clientName">ชื่อผู้ติดต่อ <span class="required-star">*</span></label>
+                <input type="text" id="clientName" class="form-control" placeholder="เช่น คุณอารยา ใจดี">
+                <div class="field-error" id="nameError">กรุณาระบุชื่อผู้ติดต่อ</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="clientEmail">อีเมล <span class="required-star">*</span></label>
+                <input type="email" id="clientEmail" class="form-control" placeholder="name@company.com">
+                <div class="field-error" id="emailError">กรุณากรอกอีเมลให้ถูกต้อง (เช่น name@example.com)</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="projectType">ประเภทโปรเจกต์ <span class="required-star">*</span></label>
+                <select id="projectType" class="form-control">
+                  <option value="">-- เลือกประเภทโปรเจกต์ --</option>
+                  <option value="ออกแบบ UX/UI แอปหรือเว็บแอป">ออกแบบ UX/UI แอปหรือเว็บแอป</option>
+                  <option value="ออกแบบและพัฒนาเว็บไซต์องค์กร / พอร์ตโฟลิโอ">ออกแบบและพัฒนาเว็บไซต์องค์กร / พอร์ตโฟลิโอ</option>
+                  <option value="ออกแบบอัตลักษณ์แบรนด์ (Brand Identity)">ออกแบบอัตลักษณ์แบรนด์ (Brand Identity)</option>
+                  <option value="ที่ปรึกษาด้าน Design System">ที่ปรึกษาด้าน Design System</option>
+                </select>
+                <div class="field-error" id="typeError">กรุณาเลือกประเภทโปรเจกต์</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="projectMessage">รายละเอียดเบื้องต้น <span class="required-star">*</span></label>
+                <textarea id="projectMessage" class="form-control" placeholder="เล่าเป้าหมาย ขอบเขตงาน หรือระยะเวลาที่ต้องการคร่าวๆ..."></textarea>
+                <div class="field-error" id="messageError">กรุณาระบุรายละเอียดโปรเจกต์อย่างน้อย 10 ตัวอักษร</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;">ส่งข้อมูลติดต่องาน</button>
+            </form>
+
+            <!-- Simulated Database Preview -->
+            <div class="submissions-box">
+              <h4 style="font-size:14px;margin:0 0 8px;color:var(--ink);">รายการข้อความที่บันทึกในระบบจำลอง (Session Database)</h4>
+              <div id="submissionsContainer">
+                <div class="submissions-empty">ยังไม่มีข้อความที่ส่งเข้ามา — ลองกรอกและกดส่งฟอร์มด้านบนเพื่อทดสอบการบันทึกข้อมูล</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="margin:0;">เว็บไซต์พอร์ตโฟลิโอตัวอย่าง (Sample Portfolio Prototype) • สร้างตามโครงสร้าง Master Template สำหรับนำไปปรับใช้กับข้อมูลจริงของคุณ</p>
+    </div>
+  </footer>
+
+  <!-- Case Study Modal -->
+  <div class="modal-backdrop" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span id="modalCategory" style="font-size:12px;font-weight:700;color:var(--brand);display:block;"></span>
+          <h3 id="modalTitle" style="margin:0;font-size:20px;"></h3>
+        </div>
+        <button type="button" class="close-modal-btn" id="closeModalBtn">ปิดหน้าต่าง ✕</button>
+      </div>
+      <div class="modal-content" id="modalBody">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Sample portfolio projects data (explicitly marked as sample case studies)
+      const PROJECTS = [
+        {
+          id: 'p1',
+          title: 'แอปวางแผนการเงินส่วนบุคคล FinFlow (ตัวอย่าง)',
+          category: 'UX/UI Design',
+          year: '2025 • ตัวอย่าง',
+          palette: ['#fbeee9', '#c2593f', '#292524'],
+          summary: 'ปรับโฉมประสบการณ์ติดตามรายจ่ายและตั้งเป้าหมายออมเงินให้เข้าใจง่ายในหน้าจอเดียว',
+          problem: 'ผู้ใช้เดิมรู้สึกว่าหน้ากราฟซับซ้อนเกินไปและต้องกดหลายขั้นตอนกว่าจะบันทึกรายการสำเร็จ',
+          process: 'สัมภาษณ์ผู้ใช้ 12 คน จัดทำ Wireframe ใหม่โดยเน้นการบันทึกใน 2 แตะ และสร้างระบบสีแยกหมวดงบประมาณชัดเจน',
+          solution: 'ได้อินเทอร์เฟซหน้าสรุปงบรายเดือนที่อ่านง่าย พร้อมชุด UI Kit มาตรฐานสำหรับทีมพัฒนา iOS และ Android',
+          gallery: [
+            'ภาพจำลองหน้าจอสรุปงบประจำเดือน (Dashboard Mockup)',
+            'ภาพจำลองขั้นตอนบันทึกรายการแบบรวดเร็ว (Quick-Add Flow)',
+            'ชุดคอมโพเนนต์และระบบสี (Design System Tokens)'
+          ]
+        },
+        {
+          id: 'p2',
+          title: 'เว็บไซต์คลินิกดูแลสุขภาพองค์รวม Calm Space (ตัวอย่าง)',
+          category: 'Web Design',
+          year: '2025 • ตัวอย่าง',
+          palette: ['#eef3ee', '#3f624d', '#1c1917'],
+          summary: 'ออกแบบเว็บไซต์โทนอบอุ่นพร้อมระบบเลือกตารางนัดหมายออนไลน์ที่รองรับหน้าจอมือถือเต็มรูปแบบ',
+          problem: 'เว็บไซต์เดิมไม่รองรับมือถือและข้อมูลแพ็กเกจบริการกระจายหลายหน้า ทำให้ผู้เข้าชมตัดสินใจยาก',
+          process: 'จัดระเบียบโครงสร้างเนื้อหาใหม่ (Information Architecture) เน้นภาพบรรยากาศสบายตา และออกแบบฟอร์มเลือกวัน-เวลาแบบทีละขั้น',
+          solution: 'เว็บไซต์โฉมใหม่โหลดไว อ่านสบายตาบนทุกขนาดหน้าจอ และเชื่อมฟอร์มจองคิวเข้ากับฐานข้อมูลหลังบ้านได้ทันที',
+          gallery: [
+            'ภาพจำลองหน้าแรกบนเดสก์ท็อปและมือถือ (Responsive Hero)',
+            'หน้ารวมโปรแกรมดูแลสุขภาพแบบเปรียบเทียบชัดเจน',
+            'หน้าจอเลือกวันและเวลานัดหมาย (Booking Stepper)'
+          ]
+        },
+        {
+          id: 'p3',
+          title: 'อัตลักษณ์แบรนด์โรงคั่วกาแฟพิเศษ Khao Hom Roasters (ตัวอย่าง)',
+          category: 'Brand Identity',
+          year: '2024 • ตัวอย่าง',
+          palette: ['#f5efe6', '#854d27', '#27221e'],
+          summary: 'สร้างสรรค์โลโก้ ระบบป้ายบอกระดับการคั่ว และบรรจุภัณฑ์ที่สะท้อนเรื่องราวแหล่งปลูกกาแฟไทย',
+          problem: 'แบรนด์ต้องการปรับภาพลักษณ์ให้ร่วมสมัยและช่วยให้ลูกค้าแยกแยะโทนรสชาติเมล็ดกาแฟแต่ละสายพันธุ์ได้ทันทีจากหน้าซอง',
+          process: 'พัฒนาแนวคิด Editorial Craft ใช้แถบสีตามโปรไฟล์รสชาติ คู่กับฟอนต์อ่านง่ายและภาพประกอบเส้นสายมินิมอล',
+          solution: 'ส่งมอบคู่มืออัตลักษณ์แบรนด์ (Brand Guidelines) ฉลากซองกาแฟ 6 ซีรีส์ และภาพจำลองสำหรับใช้บนหน้าเว็บขายสินค้า',
+          gallery: [
+            'ภาพจำลองซองเมล็ดกาแฟและกล่องของขวัญ (Packaging Mockup)',
+            'ระบบการ์ดระบุแหล่งปลูกและระดับการคั่ว (Tasting Notes Card)',
+            'คู่มือการใช้โลโก้และชุดสีแบรนด์ (Brand Book)'
+          ]
+        },
+        {
+          id: 'p4',
+          title: 'แดชบอร์ดบริหารงานทีมครีเอทีฟ Orbit Workspace (ตัวอย่าง)',
+          category: 'UX/UI Design',
+          year: '2024 • ตัวอย่าง',
+          palette: ['#eef2f6', '#335c81', '#1e293b'],
+          summary: 'ออกแบบเว็บแอปสำหรับติดตามสถานะบรีฟและตรวจรับงานดีไซน์ในที่เดียว ลดการตามงานข้ามแชต',
+          problem: 'ไฟล์งานและคอมเมนต์แก้ไขกระจายอยู่ในหลายช่องทาง ทำให้ตรวจสอบเวอร์ชันล่าสุดได้ลำบาก',
+          process: 'วางผังบอร์ดสถานะงานคู่กับหน้าเปรียบเทียบเวอร์ชันภาพ และทดสอบ Prototype กับทีมครีเอทีฟขนาดเล็ก',
+          solution: 'ได้หน้าเว็บแอปที่สะอาดตา แยกสถานะงานชัดเจน และช่วยให้ลูกค้ากดอนุมัติผลงานพร้อมแนบความเห็นเป็นจุดๆ ได้สะดวก',
+          gallery: [
+            'หน้าภาพรวมโปรเจกต์และสถานะงาน (Project Kanban View)',
+            'หน้าตรวจแบบและแสดงความคิดเห็นรายจุด (Review Canvas)',
+            'รูปแบบการแสดงผลบนแท็บเล็ตและแล็ปท็อป'
+          ]
+        }
+      ];
+
+      const projectsGrid = document.getElementById('projectsGrid');
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const caseModal = document.getElementById('caseModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalCategory = document.getElementById('modalCategory');
+      const modalBody = document.getElementById('modalBody');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+
+      let activeCategory = 'all';
+      let lastFocusedElement = null;
+      const savedSubmissions = [];
+
+      function buildMockupSVG(palette, label) {
+        const [bg, accent, dark] = palette;
+        return `
+          <svg width="100%" height="100%" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="480" height="300" fill="${bg}"/>
+            <rect x="44" y="36" width="392" height="228" rx="14" fill="#ffffff" stroke="${accent}" stroke-opacity="0.28" stroke-width="2"/>
+            <circle cx="68" cy="58" r="5" fill="${accent}" opacity="0.7"/>
+            <circle cx="84" cy="58" r="5" fill="${dark}" opacity="0.2"/>
+            <circle cx="100" cy="58" r="5" fill="${dark}" opacity="0.2"/>
+            <rect x="68" y="84" width="160" height="16" rx="8" fill="${dark}" opacity="0.85"/>
+            <rect x="68" y="110" width="240" height="10" rx="5" fill="${dark}" opacity="0.28"/>
+            <rect x="68" y="142" width="162" height="92" rx="10" fill="${bg}"/>
+            <rect x="246" y="142" width="162" height="40" rx="8" fill="${accent}" opacity="0.88"/>
+            <rect x="246" y="194" width="162" height="40" rx="8" fill="${bg}"/>
+            <text x="240" y="284" text-anchor="middle" font-size="11" fill="${dark}" opacity="0.55" font-family="sans-serif">${label}</text>
+          </svg>
+        `;
+      }
+
+      function renderProjects() {
+        const filtered = activeCategory === 'all'
+          ? PROJECTS
+          : PROJECTS.filter(p => p.category === activeCategory);
+
+        projectsGrid.innerHTML = '';
+
+        filtered.forEach(project => {
+          const card = document.createElement('button');
+          card.type = 'button';
+          card.className = 'project-card';
+          card.setAttribute('aria-label', 'เปิดอ่านรายละเอียดโปรเจกต์ ' + project.title);
+          card.innerHTML = `
+            <div class="project-thumb">
+              ${buildMockupSVG(project.palette, 'ภาพจำลองตัวอย่าง (Sample Mockup)')}
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span>${project.category}</span>
+                <span class="project-year">${project.year}</span>
+              </div>
+              <h3 class="project-title">${project.title}</h3>
+              <p class="project-summary">${project.summary}</p>
+              <span class="project-cta">อ่านเบื้องหลังการทำงาน (Case Study) →</span>
+            </div>
+          `;
+          card.addEventListener('click', () => openCaseStudy(project, card));
+          projectsGrid.appendChild(card);
+        });
+      }
+
+      function openCaseStudy(project, triggerEl) {
+        lastFocusedElement = triggerEl;
+        modalCategory.textContent = project.category + ' • ' + project.year;
+        modalTitle.textContent = project.title;
+
+        const galleryItems = project.gallery.map((caption, idx) => `
+          <div class="gallery-mockup">
+            <div style="height:96px;border-radius:8px;background:${project.palette[0]};border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:8px;color:${project.palette[1]};font-weight:700;">
+              Mockup 0${idx + 1}
+            </div>
+            <div>${caption}</div>
+          </div>
+        `).join('');
+
+        modalBody.innerHTML = `
+          <div class="case-hero-visual">
+            ${buildMockupSVG(project.palette, 'ตัวอย่างภาพนำเสนอผลงาน (Case Study Preview)')}
+          </div>
+          <p style="margin:0 0 20px;font-size:16px;color:var(--ink-secondary);">${project.summary}</p>
+          <div class="case-grid">
+            <div class="case-step">
+              <div class="case-step-label">1. โจทย์และปัญหา (Problem)</div>
+              <p>${project.problem}</p>
+            </div>
+            <div class="case-step">
+              <div class="case-step-label">2. กระบวนการ (Process)</div>
+              <p>${project.process}</p>
+            </div>
+            <div class="case-step">
+              <div class="case-step-label">3. ผลลัพธ์ที่ได้ (Solution)</div>
+              <p>${project.solution}</p>
+            </div>
+          </div>
+          <h4 style="margin:0 0 12px;font-size:16px;">แกลเลอรีภาพจำลอง (Mockup Gallery)</h4>
+          <div class="case-gallery">
+            ${galleryItems}
+          </div>
+        `;
+
+        caseModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeModalBtn.focus();
+      }
+
+      function closeCaseStudy() {
+        caseModal.classList.remove('open');
+        document.body.style.overflow = '';
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      }
+
+      closeModalBtn.addEventListener('click', closeCaseStudy);
+      caseModal.addEventListener('click', (e) => {
+        if (e.target === caseModal) closeCaseStudy();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && caseModal.classList.contains('open')) {
+          closeCaseStudy();
+        }
+      });
+
+      // Category Tabs
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          filterTabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          activeCategory = tab.getAttribute('data-category');
+          renderProjects();
+        });
+      });
+
+      // Smooth Scroll Navigation
+      document.querySelectorAll('[data-scroll]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetSelector = btn.getAttribute('data-scroll');
+          const targetEl = document.querySelector(targetSelector);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (mobileNavDrawer.classList.contains('open')) {
+            mobileNavDrawer.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileNavDrawer.classList.toggle('open');
+        mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Hire Me Form Validation & In-Memory Submission Storage
+      const hireForm = document.getElementById('hireForm');
+      const clientName = document.getElementById('clientName');
+      const clientEmail = document.getElementById('clientEmail');
+      const projectType = document.getElementById('projectType');
+      const projectMessage = document.getElementById('projectMessage');
+      const formStatus = document.getElementById('formStatus');
+      const submissionsContainer = document.getElementById('submissionsContainer');
+
+      function setFieldError(inputEl, errorId, hasError) {
+        const errEl = document.getElementById(errorId);
+        if (hasError) {
+          inputEl.classList.add('invalid');
+          errEl.classList.add('visible');
+        } else {
+          inputEl.classList.remove('invalid');
+          errEl.classList.remove('visible');
+        }
+      }
+
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function renderSubmissions() {
+        if (savedSubmissions.length === 0) return;
+        submissionsContainer.innerHTML = `<div class="submission-list">` +
+          savedSubmissions.map(item => `
+            <div class="submission-entry">
+              <div class="submission-entry-top">
+                <span>${escapeHtml(item.name)} (${escapeHtml(item.email)})</span>
+                <span class="submission-badge">${escapeHtml(item.type)}</span>
+              </div>
+              <div style="color:var(--ink-secondary);">${escapeHtml(item.message)}</div>
+              <div style="color:var(--muted);font-size:11px;margin-top:4px;">บันทึกเมื่อ ${escapeHtml(item.time)}</div>
+            </div>
+          `).join('') + `</div>`;
+      }
+
+      hireForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+
+        const nameVal = clientName.value.trim();
+        const emailVal = clientEmail.value.trim();
+        const typeVal = projectType.value.trim();
+        const msgVal = projectMessage.value.trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        const nameErr = nameVal.length === 0;
+        const emailErr = !emailRegex.test(emailVal);
+        const typeErr = typeVal.length === 0;
+        const msgErr = msgVal.length < 10;
+
+        setFieldError(clientName, 'nameError', nameErr);
+        setFieldError(clientEmail, 'emailError', emailErr);
+        setFieldError(projectType, 'typeError', typeErr);
+        setFieldError(projectMessage, 'messageError', msgErr);
+
+        if (nameErr || emailErr || typeErr || msgErr) {
+          return;
+        }
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }) + ' น.';
+
+        savedSubmissions.unshift({
+          name: nameVal,
+          email: emailVal,
+          type: typeVal,
+          message: msgVal,
+          time: timeStr
+        });
+
+        renderSubmissions();
+        hireForm.reset();
+
+        formStatus.className = 'form-status success';
+        formStatus.textContent = 'บันทึกข้อความติดต่องานเรียบร้อยแล้ว ขอบคุณที่ให้ความสนใจค่ะ!';
+      });
+
+      // Clear validation state as user types
+      [
+        [clientName, 'nameError'],
+        [clientEmail, 'emailError'],
+        [projectType, 'typeError'],
+        [projectMessage, 'messageError']
+      ].forEach(([el, errId]) => {
+        el.addEventListener('input', () => setFieldError(el, errId, false));
+      });
+
+      // Initial render
+      renderProjects();
+    })();
+  </script>
+</body>
+</html>
